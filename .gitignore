@@ -1,0 +1,14 @@
+# Secrets
+credentials.json
+google-credentials.json
+*.rdb
+TOOLS.md
+skills/youtube-research/app.py
+
+# Local
+.openclaw/
+.pi/
+__pycache__/
+*.pyc
+test.txt
+dump.rdb
