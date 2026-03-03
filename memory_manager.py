@@ -23,14 +23,17 @@ logger = logging.getLogger(__name__)
 
 # Configuration
 REDIS_HOST = os.getenv('REDIS_HOST', 'localhost')
-REDIS_PORT = int(os.getenv('REDIS_PORT', 6380))
+REDIS_PORT = int(os.getenv('REDIS_PORT', 6379))
 PG_HOST = os.getenv('PG_HOST', 'localhost')
-PG_PORT = int(os.getenv('PG_PORT', 5432))
+PG_PORT = int(os.getenv('PG_PORT', 5433))
 PG_DB = os.getenv('PG_DB', 'memory')
 PG_USER = os.getenv('PG_USER', os.getenv('USER', 'node'))
+# Legacy - kept for backwards compatibility
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', '')
+# Primary embedding provider
+GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', '')
 
-EMBEDDING_DIM = 1536  # OpenAI ada-002
+EMBEDDING_DIM = 3072  # Gemini gemini-embedding-001 dimensions
 
 
 class MemoryConfig:
@@ -39,7 +42,7 @@ class MemoryConfig:
     episodic_retention_days = 90
     consolidation_trigger = 15  # episodes
     decay_interval_hours = 24
-    embedding_model = "text-embedding-3-small"
+    embedding_model = "gemini-embedding-001"
 
 
 @dataclass
@@ -295,19 +298,50 @@ class MemoryManager:
     # ==================== SEMANTIC MEMORY (Tier 3) ====================
     
     def _get_embedding(self, text: str) -> List[float]:
-        """Get embedding for text using OpenAI"""
-        if not OPENAI_API_KEY:
+        """Get embedding for text using Gemini API"""
+        import urllib.request
+        import urllib.parse
+        
+        gemini_api_key = os.getenv('GEMINI_API_KEY', '')
+        
+        if not gemini_api_key:
             # Return dummy embedding for testing
             import random
+            logger.warning("GEMINI_API_KEY not set, using random embeddings")
             return [random.random() for _ in range(EMBEDDING_DIM)]
         
-        from openai import OpenAI
-        client = OpenAI(api_key=OPENAI_API_KEY)
-        response = client.embeddings.create(
-            model="text-embedding-3-small",
-            input=text
-        )
-        return response.data[0].embedding
+        try:
+            # Gemini embedding API
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:embedContent?key={gemini_api_key}"
+            
+            payload = {
+                "content": {
+                    "parts": [{"text": text}]
+                }
+            }
+            
+            data = json.dumps(payload).encode('utf-8')
+            req = urllib.request.Request(
+                url,
+                data=data,
+                headers={'Content-Type': 'application/json'}
+            )
+            
+            with urllib.request.urlopen(req, timeout=30) as response:
+                result = json.loads(response.read().decode('utf-8'))
+                
+                # Gemini returns embedding in result['embedding']['values']
+                if 'embedding' in result and 'values' in result['embedding']:
+                    return result['embedding']['values']
+                else:
+                    logger.warning(f"Unexpected Gemini response format: {result}")
+                    import random
+                    return [random.random() for _ in range(EMBEDDING_DIM)]
+                    
+        except Exception as e:
+            logger.error(f"Gemini embedding failed: {e}")
+            import random
+            return [random.random() for _ in range(EMBEDDING_DIM)]
     
     def upsert_semantic(self, fact: str, category: str, confidence: float = 0.5):
         """Insert or update semantic memory (fact)"""
