@@ -1,0 +1,51 @@
+{
+  "api": {
+    "provider": "scrapecreators",
+    "key": "TbZLR6ngfmMQmjN80wECwx4F6Ne2",
+    "base_url": "https://api.scrapecreators.com/v1"
+  },
+  "obsidian": {
+    "default_folder": "AI-PULSE",
+    "vault_path": "/Users/tariq/Obsidian",
+    "ssh_host": "100.82.80.22",
+    "ssh_user": "tariq"
+  },
+  "summarizer": {
+    "provider": "ollama",
+    "model": "qwen3.5:397b-cloud",
+    "endpoint": "http://172.17.0.1:11434/api/chat",
+    "timeout": 120
+  },
+  "search": {
+    "queries": [
+      "Local LLM workflow implementation 2026",
+      "Run LLM locally tutorial Ollama",
+      "Self-hosted LLM production deployment",
+      "Multi-agent AI system architecture",
+      "AI agents workflow automation",
+      "LLM agent framework comparison",
+      "New AI model release 2026 benchmark",
+      "Best open source LLM 2026",
+      "AI inference optimization production",
+      "RAG pipeline implementation tutorial"
+    ],
+    "results_per_query": 20,
+    "upload_date_filter": "48h"
+  },
+  "ranking": {
+    "recency_weight": 0.30,
+    "engagement_weight": 0.25,
+    "credibility_weight": 0.20,
+    "topic_relevance_weight": 0.25
+  },
+  "categories": {
+    "local_llm": ["llama", "ollama", "local", "self-hosted", "quantization", "workflow"],
+    "agents": ["agent", "multi-agent", "autonomous", "workflow", "crew", "langgraph"],
+    "models": ["model", "release", "benchmark", "MMLU", "weights", "open source"],
+    "infrastructure": ["RAG", "inference", "pipeline", "deployment", "production", "optimization"]
+  },
+  "schedule": {
+    "time": "09:00",
+    "timezone": "Europe/Paris"
+  }
+}
