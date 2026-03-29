@@ -1,14 +1,12 @@
 # USER.md — Owner Profile
 
-# OpenClaw v3.0 | PAI-Inspired Architecture
-
 ## Identity
 
 - **Name**: Tariq
 - **Origin**: Moroccan 🇲🇦
 - **Languages**: Arabic (native, including Darija), French (fluent), English (fluent)
-- **Role**: Full-Stack Developer
-- **Primary Project**: DermaAI — Enterprise SaaS for Dermatology Practice Management
+- **Role**: Full-Stack vibe coder, PMP holder, Data Analyst, Entrepreneur, Avide Learner, AI Systems creator.
+- **Primary Project**: Personal Knowledge Operating System PKOS, Dermaai, Claude, openclaw, AI implementation
 - **Background**: 30 years experience across project management, business intelligence, data analysis, and software engineering
 - **Certifications**: PMP, Google Advanced Data Analytics
 - **Learning Style**: Vibe coder — learns by building, prefers concepts taught inline during real work, not theory-first
@@ -34,6 +32,12 @@
 
 ## Active Projects
 
+### PKOS (P1 → G1)
+
+- Status: Active development
+- Current focus: creating and connecting my knowledge domains to my PKOS
+- UI: Glassmorphism design system, gradient-based theme
+- Stack: Next.js 15 + FastAPI + PostgreSQL
 ### DermaAI (P1 → G1)
 
 - Status: Active development
