@@ -110,7 +110,7 @@ When facing ambiguity, apply this priority stack:
 
 ---
 
-## Foundational Principles (PAI-Inspired)
+## Foundational Principles
 
 ### Scaffolding > Model
 
