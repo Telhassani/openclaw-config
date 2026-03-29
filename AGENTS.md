@@ -1,7 +1,5 @@
 # AGENTS.md — Sub-Agent Definitions & Routing
 
-# OpenClaw v3.0 | PAI-Inspired Architecture
-
 ## Global Rules
 
 1. ALL agents inherit the Language Protocol from USER/IDENTITY.md. Respond in the language the user prompts in.
