@@ -4,12 +4,12 @@
 
 ## Tasks
 
-- [ ] Memory: every 4th heartbeat
+- [ ] Memory maintenance: every 4th heartbeat
   1. Read last 3 daily notes
-  2. Update memory/stats.json (track what gets accessed)
-  3. Distill 1-2 insights → MEMORY.md
+  2. Distill 1-2 insights → MEMORY.md
+  3. Update MEMORY.md active projects status
   4. Prune: no-access >30d OR low-value
 
 ---
 
-HEARTBEAT_OK if nothing else.
+HEARTBEAT_OK if nothing else needs attention.

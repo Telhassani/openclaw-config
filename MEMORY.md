@@ -52,8 +52,8 @@
 | **ScrapeCreators** | `x-api-key` header, not `Authorization: Bearer` | Auth endpoint |
 | **ScrapeCreators** | `url` param for transcript, not `video_id` | Transcript endpoint |
 | **Ollama** | `qwen3.5:397b-cloud` native name | Model reference |
-| **ScrapeCreators** | Channel returns dict `{title, handle, id, thumbnail}` | Template: `channel['title']` |
+| **ScrapeCreators** | Channel returns dict `{title, handle, id, thumbnail}` | Template renders `channel['title']` |
 
 ---
 
-*This is distilled wisdom, not a timeline. Raw logs → `memory/YYYY-MM-DD.md`*
+*Memory is curated from daily notes (`memory/YYYY-MM-DD.md`) and significant interactions. Raw logs live in daily files. This is the distilled wisdom, not the timeline.*
