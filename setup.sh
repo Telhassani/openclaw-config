@@ -1,18 +1,10 @@
-#!/bin/bash
-
-# OpenClaw Config Bootstrap Script
-# Usage: ./setup.sh
+#!/bin/sh
 
 echo "Setting up OpenClaw configuration..."
 
-# Re-install skills from lock file (if exists)
-if [ -f "skills-lock.json" ]; then
-    echo "Installing skills..."
-    npx skills install
-fi
+echo "Using local skills (no install needed)"
 
-# Restart OpenClaw gateway
-echo "Restarting OpenClaw gateway..."
-openclaw gateway restart
+echo "Checking skills folder..."
+ls -la skills 2>/dev/null || echo "No skills folder found"
 
-echo "Done! OpenClaw config restored."
+echo "Setup complete."
