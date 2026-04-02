@@ -12,4 +12,4 @@
 
 ---
 
-HEARTBEAT_OK if nothing else needs attention.
+HEARTBEAT_OK if nothing needs attention.
