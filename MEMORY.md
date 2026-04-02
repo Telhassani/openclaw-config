@@ -1,69 +1,59 @@
-# 🧠 OpenClaw Dynamic Memory
+# 🧠 MEMORY.md — Long-Term Memory
 
-## Latest Update: 2026-03-10
-
-### Skill: Video-Summary Fix
-- **Fixed**: Config (API key, Ollama endpoint, model)
-- **Added**: `call_ollama_summary()` (30 lines in app.py)
-- **Removed**: Over-engineered bloat (zettelkasten, backlinks, test artifacts)
-- **Size**: 31KB (was 25KB original, bloated to ~700KB, now minimal again)
-
-### Disk Space:
-- **Freed**: ~1.4GB (gcc@12, binutils, caches, node_modules)
-- **Current**: 1.1GB free (was 760MB)
-
-### Lesson:
-> "Code Before Prompts" — If config fixes it, don't rewrite architecture. Cleanup immediately after testing.
+**Last updated**: 2026-04-02
 
 ---
 
-## Active Projects:
-1. **DermaAI** — Auth system (OAuth, MFA, RBAC)
-2. **Homelab** — n8n, Ollama, Cloudflare tunnels
-3. **Morning Brief** — Daily email via Resend + Telegram
-4. **video-summary** — Fixed, working (minimal now)
+## Active Projects
+
+| Project | Status | Notes |
+|---------|--------|-------|
+| **DermaAI** | Pending | Auth system (OAuth 2.0, MFA, RBAC) — DermaAI glassmorphism UI system |
+| **Homelab** | Operational | n8n workflows, Ollama models, Cloudflare tunnels, Docker |
+| **AI Pulse Tracker** | Production | YouTube AI/tech → Obsidian daily summaries, 9 AM cron |
+| **Morning Brief** | Working | Daily email via Resend + Telegram |
+| **video-summary** | Stable | Minimal (31KB), duration-based scaling, topic templates |
+| **OpenClaw Config** | Active | GitHub backup repo for workspace config + skills |
 
 ---
 
-**Last updated**: 2026-03-10 19:32
+## Infrastructure
+
+| Component | Status | Notes |
+|-----------|--------|-------|
+| **VPS** | Hostinger, Docker | Port 55924, container: openclaw-xura-openclaw-1 |
+| **Memory** | Builtin (replaced custom system) | gemini-embedding-001 + sqlite-vec + FTS |
+| **Ollama** | 120s timeout | Model: qwen3.5:397b-cloud |
 
 ---
 
-## Latest Update: 2026-03-13 03:38 UTC
+## Key Decisions
 
-### Skill: AI Pulse Tracker — Production Complete
-- **Built**: Full YouTube AI/tech scraper → rank → summarize → Obsidian pipeline
-- **Architecture**: Python skill, 10 rotating search queries, 4 categories (Local LLM, Agents, Models, Infra)
-- **Credit optimization**: 30 credits/run (20 search + 10 transcripts)
-- **Ollama timeout**: 120s (eliminates 500 errors)
-- **Output**: `~/Obsidian/AI-PULSE/YYYY-MM-DD.md` daily at 9:00 AM Europe/Paris
-- **Test run**: 26 videos fetched → 10 transcripts → 10 summaries → SSH to Mac ✅
-- **Cron**: Installed for 9 AM daily (isolated session)
-
-### API Fixes (ScrapeCreators)
-- **Auth**: `x-api-key` header (not `Authorization: Bearer`)
-- **Transcript**: `url` param (not `video_id`)
-- **Model**: `qwen3.5:397b-cloud` (native Ollama name)
-- **Channel format**: API returns dict `{title, handle, id, thumbnail}` — template renders `channel['title']`
+- **2026-04-02**: Memory system rebuilt on OpenClaw builtin memory. Rejected custom memory_manager.py (4 unresolved issues, extra infrastructure, exposed credentials). Adopted SOUL.md Algorithm + ISC criteria from repo.
+- **2026-03-13**: AI Pulse Tracker deployed — 10 rotating YouTube searches, 4 categories, 30 credits/run, SSH to Mac for Obsidian output.
+- **2026-03-10**: video-summary stabilized — stripped from 700KB bloat to 31KB minimal. Lesson: enhance thoughtfully, resist over-engineering.
 
 ---
 
-## Latest Update: 2026-03-13 20:02 UTC
+## Lessons Learned
 
-### Heartbeat #122 — Memory Maintenance Cycle
-
-**Distilled Insights:**
-1. **Video-summary API fix (03-06)**: ScrapeCreators `/youtube/video` returns metadata only; must call `/youtube/video/transcript` separately for transcript text. Pattern: Always verify API behavior against docs.
-2. **Video-summary enhancement trajectory (03-09 → 03-10)**: Added duration-based scaling (3 tiers) + 6 topic templates → then bloated to 700KB → trimmed back to 31KB. Lesson: Enhance thoughtfully, but resist over-engineering. "Code Before Prompts" validated.
-
-**Active Projects Status:**
-- **DermaAI**: Auth system (OAuth, MFA, RBAC) — pending implementation
-- **Homelab**: n8n, Ollama, Cloudflare tunnels — operational
-- **Morning Brief**: Resend + Telegram pipeline — installed, tested, working
-- **AI Pulse Tracker**: YouTube AI/tech scraper → Obsidian — production complete (9 AM daily cron)
-- **video-summary**: Duration scaling + templates + minimal (31KB) — stable
-
-**Next Maintenance**: Heartbeat #126
+1. **"Code Before Prompts"** — If config fixes it, don't rewrite architecture. Go left: Goal → Code → CLI → Prompt → Agent.
+2. **Verify API behavior against docs** — ScrapeCreators `/youtube/video` returns metadata only; `/youtube/video/transcript` is a separate call.
+3. **Cleanup after testing** — Remove bloat immediately. Don't let artifacts accumulate.
+4. **Builtin memory > external DB** — Gemini embeddings + sqlite-vec + FTS handles tiered memory without extra containers, API dependencies, or exposed credentials.
+5. **Scaffold first, trim later** — Build the structure, then cut what doesn't earn its weight (video-summary 700KB→31KB pattern).
 
 ---
 
+## API Patterns & Fixes
+
+| Service | Fix | Notes |
+|---------|-----|-------|
+| **ScrapeCreators** | `x-api-key` header, not `Authorization: Bearer` | Auth endpoint |
+| **ScrapeCreators** | `url` param for transcript, not `video_id` | Transcript endpoint |
+| **Ollama** | `qwen3.5:397b-cloud` native name | Model reference |
+| **ScrapeCreators** | Channel returns dict `{title, handle, id, thumbnail}` | Template: `channel['title']` |
+
+---
+
+*This is distilled wisdom, not a timeline. Raw logs → `memory/YYYY-MM-DD.md`*
