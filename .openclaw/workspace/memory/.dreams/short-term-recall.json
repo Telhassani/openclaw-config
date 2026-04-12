@@ -1,0 +1,775 @@
+{
+  "version": 1,
+  "updatedAt": "2026-04-12T18:44:43.499Z",
+  "entries": {
+    "memory:memory/2026-04-03.md:86:104": {
+      "key": "memory:memory/2026-04-03.md:86:104",
+      "path": "memory/2026-04-03.md",
+      "startLine": 86,
+      "endLine": 104,
+      "source": "memory",
+      "snippet": "- Frontend: Vite + React 19 on port 3000, Aurora Cosmos background (3 animated orbs + noise), glassmorphic shell (ChromeBar 56px, SideRail 56px, StatusBar 36px), Framer Motion entrance animations - Zustand stores: `gatewayStore` (WS connection), `agentStore` (fleet with role enum), `uiStore` (active panel, command palette) - Config: `package.json` (Bun, React 19, Express, Zustand, Framer Motion, Tailwind 4), `vite.config.ts` (proxy to backend), `tailwind.config.ts` (aurora animations), `.env.example` - Committed as `033317e` — pushed to Mac at `~/zenith_repo/`, GitHub push pending (needs fine-grained token configured on Mac's git remote) ### URLs - `zenith.tariqvps.com` → Tailscale IP `100.",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.3993954688310623,
+      "maxScore": 0.3993954688310623,
+      "firstRecalledAt": "2026-04-10T21:37:39.862Z",
+      "lastRecalledAt": "2026-04-10T21:37:39.862Z",
+      "queryHashes": [
+        "88d6659e3843"
+      ],
+      "recallDays": [
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "gateway",
+        "package.json",
+        "vite.config.ts",
+        "tailwind.config.ts",
+        "env.example",
+        "zenith-repo",
+        "fine-grained",
+        "zenith.tariqvps.com"
+      ]
+    },
+    "memory:memory/2026-04-03.md:72:87": {
+      "key": "memory:memory/2026-04-03.md:72:87",
+      "path": "memory/2026-04-03.md",
+      "startLine": 72,
+      "endLine": 87,
+      "source": "memory",
+      "snippet": "- Previous session had two subagents (`zenith-frontend-shell`, `zenith-backend`) that partially built ZENITH in `/data/zenith/` but their code was lost/not committed. - Only architecture docs (PLAN.md, CLAUDE.md, IMPLEMENTATION.md) survived in `/data/zenith_repo/`. - Lesson: Always commit incrementally and track working directory vs. repo separately. ### Access Configuration - **VPS Container**: Direct `exec` access — Linux 6.8.0, x86_64, hostname `0eefeda55440` - **Mac**: SSH via `ssh -i ~/.ssh/id_ed25519 tariq@100.82.80.22` — macOS 25.4.0, Apple Silicon (T6000), OpenClaw 2026.4.2 - Container SSH key (`openclaw-vps`, ed25519) added to Mac's `~/.ssh/authorized_keys` — SSH from container to",
+      "recallCount": 3,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.1049701541662216,
+      "maxScore": 0.3910537183284759,
+      "firstRecalledAt": "2026-04-10T21:37:39.862Z",
+      "lastRecalledAt": "2026-04-12T11:53:38.333Z",
+      "queryHashes": [
+        "88d6659e3843",
+        "b6525e69f5ce",
+        "6453de392137"
+      ],
+      "recallDays": [
+        "2026-04-10",
+        "2026-04-11",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "zenith-frontend-shell",
+        "zenith-backend",
+        "data/zenith",
+        "lost/not",
+        "plan.md",
+        "claude.md",
+        "implementation.md",
+        "data/zenith-repo"
+      ]
+    },
+    "memory:memory/2026-04-03.md:100:107": {
+      "key": "memory:memory/2026-04-03.md:100:107",
+      "path": "memory/2026-04-03.md",
+      "startLine": 100,
+      "endLine": 107,
+      "source": "memory",
+      "snippet": "- Gemini embeddings (dashboard) + Ollama nomic-embed-text (MCP), 768d vectors, SHA-256 dedup - Philosophy: Shared ontology, Resonance Engine, Pull-not-Push, Material Identity per domain ### Session Management Lesson (from previous failure) - Subagents built code in `/data/zenith/` but repo was `/data/zenith_repo/` — directories diverged, code was orphaned - Fix: Use single canonical repo directory (`/data/zenith_repo/`), commit after each file batch, verify files exist in both locations before proceeding - Context preservation: Save checkpoints to `memory/YYYY-MM-DD.md` after major milestones",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.733149853348732,
+      "maxScore": 0.3677505940198898,
+      "firstRecalledAt": "2026-04-10T21:37:39.862Z",
+      "lastRecalledAt": "2026-04-11T14:59:10.840Z",
+      "queryHashes": [
+        "88d6659e3843",
+        "0bf4c51b40ea"
+      ],
+      "recallDays": [
+        "2026-04-10",
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "embedding",
+        "embeddings",
+        "nomic-embed-text",
+        "sha-256",
+        "pull-not-push",
+        "data/zenith",
+        "data/zenith-repo",
+        "memory/yyyy-mm-dd.md"
+      ]
+    },
+    "memory:memory/2026-04-03.md:1:33": {
+      "key": "memory:memory/2026-04-03.md:1:33",
+      "path": "memory/2026-04-03.md",
+      "startLine": 1,
+      "endLine": 33,
+      "source": "memory",
+      "snippet": "## Memory search fix — Gemini → Ollama local embeddings - **Problem**: Gemini embeddings API key was leaked (403 error), memory_search completely broken - **Solution**: Switched to local Ollama `nomic-embed-text` (137M, nomic-bert family) - **Config**: `memorySearch.provider = \"ollama\"`, `model = \"nomic-embed-text\"`, `remote.baseUrl = \"http://172.17.0.1:11434\"` - **Bonus**: Fixed Ollama provider `baseUrl` from `host.docker.internal` to `172.17.0.1` — also fixes heartbeat routing - **Status**: Fully local, $0 cost, no external API dependency - **Note**: Memory index will auto-reindex on restart (model/dimension change detected) ## Memory search test results - Tested `memory_search` after",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.9009969531997806,
+      "maxScore": 0.5386166214450961,
+      "firstRecalledAt": "2026-04-10T21:37:39.862Z",
+      "lastRecalledAt": "2026-04-12T18:08:48.054Z",
+      "queryHashes": [
+        "88d6659e3843",
+        "48a3661d8464"
+      ],
+      "recallDays": [
+        "2026-04-10",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "embedding",
+        "embeddings",
+        "memory-search",
+        "nomic-embed-text",
+        "nomic-bert",
+        "memorysearch.provider",
+        "remote.baseurl",
+        "172.17.0.1"
+      ]
+    },
+    "memory:memory/2026-04-02.md:1:33": {
+      "key": "memory:memory/2026-04-02.md:1:33",
+      "path": "memory/2026-04-02.md",
+      "startLine": 1,
+      "endLine": 33,
+      "source": "memory",
+      "snippet": "# 2026-04-02 ## Heartbeat → Ollama routing - Configured heartbeat to use local `ollama/llama3.2:3b` instead of paid API model - Interval: 1h, light context enabled - Model already pulled locally (~2GB), Ollama already running on host - Future proofing: when we switch from free OpenRouter models to paid ones, heartbeats stay at $0 cost - Config: `agents.defaults.heartbeat`: every=1h, model=ollama/llama3.2:3b, session=main, target=last, lightContext=true ## Bootstrap optimization - Trimmed AGENTS.md from 8KB → 900B (cut duplicate docs, template bloat) - Bootstrap total: ~15.4KB → 11.2KB (27% reduction) - Next frontier: SOUL.md at 5.5KB (but personality/algorithm are harder to trim) ## Ope",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.35372688770294186,
+      "maxScore": 0.35372688770294186,
+      "firstRecalledAt": "2026-04-11T10:57:43.089Z",
+      "lastRecalledAt": "2026-04-11T10:57:43.089Z",
+      "queryHashes": [
+        "472aade1304b"
+      ],
+      "recallDays": [
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "router",
+        "ollama/llama3.2",
+        "agents.defaults.heartbeat",
+        "agents.md",
+        "15.4kb",
+        "11.2kb",
+        "soul.md",
+        "5.5kb"
+      ]
+    },
+    "memory:memory/2026-04-02.md:28:38": {
+      "key": "memory:memory/2026-04-02.md:28:38",
+      "path": "memory/2026-04-02.md",
+      "startLine": 28,
+      "endLine": 38,
+      "source": "memory",
+      "snippet": "- Available subagent config: `model`, `thinking`, `maxConcurrent`, `maxSpawnDepth`, `maxChildrenPerAgent`, `runTimeoutSeconds`, `archiveAfterMinutes` ### Session Initialization (when testing/iterating) - Bootstrap files load at session start (can't prevent this, they're injected) - On-demand memory retrieval via `memory_search()` — correct pattern - MEMORY.md loads in main sessions (already does, keep it) - Don't try to cache/override bootstrap injection — not a configurable feature ### What NOT to waste time on - Caching system prompt files — not configurable in OpenClaw - Tool allowlist per subagent — config path doesn't exist",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7775930643081664,
+      "maxScore": 0.41945264935493465,
+      "firstRecalledAt": "2026-04-11T10:58:33.957Z",
+      "lastRecalledAt": "2026-04-12T12:05:59.847Z",
+      "queryHashes": [
+        "be994e3be9a1",
+        "f0194e4803a8"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "testing/iterating",
+        "on-demand",
+        "memory-search",
+        "memory.md",
+        "cache/override",
+        "available",
+        "subagent",
+        "config"
+      ]
+    },
+    "memory:memory/2026-04-11.md:56:75": {
+      "key": "memory:memory/2026-04-11.md:56:75",
+      "path": "memory/2026-04-11.md",
+      "startLine": 56,
+      "endLine": 75,
+      "source": "memory",
+      "snippet": "- **Critical lesson**: Next.js production build caches old route handlers — must kill old process AND `rm -rf .next` for clean rebuild - MEMORY.md updated: added ai-memory Dashboard row to Active Projects table ## TODO - Verify tasks page renders correctly - Verify mistakes page renders correctly - Confirm all pages work end-to-end after deployment ## Memory System Investigation & Reconfiguration - Found contradiction: SOUL.md mandates ai-memory CLI writes, but OpenClaw system prompt mandates `memory_search` (builtin tool). Agent followed builtin because it's a first-class tool, not a shell command. - **Decision**: ai-memory is now PRIMARY for all reads/writes. OpenClaw memory is backup on",
+      "recallCount": 6,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 2.859032005335416,
+      "maxScore": 0.5665252628579993,
+      "firstRecalledAt": "2026-04-11T10:58:33.957Z",
+      "lastRecalledAt": "2026-04-12T15:50:09.573Z",
+      "queryHashes": [
+        "be994e3be9a1",
+        "f4493991bcb0",
+        "d4ee0375988c",
+        "c7ca9130b4da",
+        "3e1387d4eaab",
+        "135a03d29226"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "backup",
+        "next.js",
+        "memory.md",
+        "ai-memory",
+        "end-to-end",
+        "soul.md",
+        "memory-search",
+        "first-class"
+      ]
+    },
+    "memory:memory/2026-04-11.md:40:64": {
+      "key": "memory:memory/2026-04-11.md:40:64",
+      "path": "memory/2026-04-11.md",
+      "startLine": 40,
+      "endLine": 64,
+      "source": "memory",
+      "snippet": "### ai-memory Logging - Logged decision: \"Switched dashboard from SSR to CSR for data fetching\" - Logged decision: \"API routes read vault via SSH instead of ai-memory recall\" - Logged pattern: \"Kill old process before starting new one in nohup restarts\" # 2026-04-11 — Daily Notes ## ai-memory Dashboard — Full Rewrite & Deploy - Built a Next.js dashboard at `https://aimem.tariqvps.com` for ai-memory vault data - API routes rewritten: decisions/patterns/mistakes parse timestamped markdown → `{date, text}`; projects reads file contents; tasks returns `{text, timestamp}` - Frontend rewritten with Tremor v3 components, glassmorphism dark theme, gradient backgrounds - All 5 detail pages are clie",
+      "recallCount": 16,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 7.202759915144648,
+      "maxScore": 0.6554110567285683,
+      "firstRecalledAt": "2026-04-11T11:55:10.340Z",
+      "lastRecalledAt": "2026-04-12T18:44:43.499Z",
+      "queryHashes": [
+        "f4493991bcb0",
+        "c30f8fac8827",
+        "d4ee0375988c",
+        "c7ca9130b4da",
+        "fad417b5bed2",
+        "724d2de690ea",
+        "46522405f893",
+        "0bf4c51b40ea",
+        "f0d939196864",
+        "b720b54c28de",
+        "a23471398b98",
+        "44d1b14e104e",
+        "0da5c866ca13",
+        "3e1387d4eaab",
+        "135a03d29226",
+        "a4786281cac5"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "ai-memory",
+        "next.js",
+        "aimem.tariqvps.com",
+        "decisions/patterns/mistakes",
+        "logging",
+        "logged",
+        "decision",
+        "switched"
+      ]
+    },
+    "memory:memory/2026-04-11.md:1:25": {
+      "key": "memory:memory/2026-04-11.md:1:25",
+      "path": "memory/2026-04-11.md",
+      "startLine": 1,
+      "endLine": 25,
+      "source": "memory",
+      "snippet": "# 2026-04-11 Daily Notes ## aimem-dashboard — Phase 2 UI + Stability ### Task 3: Stability ✅ - Moved cloudflared binary from `/tmp/cloudflared` to persistent `/data/.openclaw/workspace/aimem-dashboard/bin/cloudflared` - Created `start.sh` — idempotent startup script that checks if services are running before restarting - OpenClaw keepalive cron runs every 5 min, checks both Next.js and cloudflared, restarts if down - Named tunnel at `aimem.tariqvps.com` confirmed working with token `eyJhIjoiZDA2YWIxNmIyNDA1ZDQ3MDE1ZTNlNjI2Yjk3ZTk2OWIi...` ### Task 2: API Routes Rewrite ✅ - Rewrote all 5 API routes to read vault files directly via SSH (`ssh -o IdentitiesOnly=yes -i ~/.ssh/id_ed25519 tariq@",
+      "recallCount": 13,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 5.703264755010604,
+      "maxScore": 0.4958426862955093,
+      "firstRecalledAt": "2026-04-11T11:55:10.340Z",
+      "lastRecalledAt": "2026-04-12T18:44:43.499Z",
+      "queryHashes": [
+        "f4493991bcb0",
+        "c30f8fac8827",
+        "c7ca9130b4da",
+        "724d2de690ea",
+        "46522405f893",
+        "0bf4c51b40ea",
+        "f0d939196864",
+        "10c12fcd7e56",
+        "a23471398b98",
+        "44d1b14e104e",
+        "0da5c866ca13",
+        "135a03d29226",
+        "a4786281cac5"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "aimem-dashboard",
+        "tmp/cloudflared",
+        "start.sh",
+        "next.js",
+        "aimem.tariqvps.com",
+        "ssh/id-ed25519",
+        "aimem",
+        "dashboard"
+      ]
+    },
+    "memory:memory/2026-04-11.md:100:117": {
+      "key": "memory:memory/2026-04-11.md:100:117",
+      "path": "memory/2026-04-11.md",
+      "startLine": 100,
+      "endLine": 117,
+      "source": "memory",
+      "snippet": "- New `/api/archives` route — fetches archive files via SSH, parses timestamped entries, returns `{name, date, entries[]}` - Archives card on dashboard: orange gradient, shows \"10 entries\" count - Sidebar updated with Archive icon + link - `/api/counts` updated to include `archives` count - Build verified: 18 routes (8 static + 10 dynamic), all working ## User Reports \"page could not load\" - Next.js keeps dying intermittently — `nohup` not reliable - Works from sandbox browser every time — issue may be user's browser or intermittent downtime - Added custom `not-found.tsx` and `error.tsx` for styled error pages - Still need: proper process manager (pm2/systemd) for reliability ## Excalidraw",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7336848288774489,
+      "maxScore": 0.38341554701328273,
+      "firstRecalledAt": "2026-04-11T11:55:10.340Z",
+      "lastRecalledAt": "2026-04-11T12:33:52.968Z",
+      "queryHashes": [
+        "f4493991bcb0",
+        "5fdac6dd8043"
+      ],
+      "recallDays": [
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "api/archives",
+        "api/counts",
+        "next.js",
+        "not-found.tsx",
+        "error.tsx",
+        "pm2/systemd",
+        "new",
+        "api"
+      ]
+    },
+    "memory:memory/2026-04-11.md:161:188": {
+      "key": "memory:memory/2026-04-11.md:161:188",
+      "path": "memory/2026-04-11.md",
+      "startLine": 161,
+      "endLine": 188,
+      "source": "memory",
+      "snippet": "- `includeDefaultMemory: true` (indexes MEMORY.md + memory/*.md) - Path: `/data/ai-memory-vault` (vault mirror, populated via cron sync) - Sessions: enabled, 90-day retention - Search mode: query - Limits: 8 results, 500 chars, 15s timeout - Created vault sync script at `/data/.openclaw/workspace/sync-vault.sh` (uses scp since rsync unavailable) - Set up cron job (every 15min) to sync vault from Mac - Gateway restarted with QMD config ### Phase 3: Dashboard Search + Write ✅ - `/api/search` route: 3-tier search (SSH grep → ai-memory CLI → local grep fallback) - `/api/write` route: POST endpoint for decisions/patterns/mistakes/tasks/notes with CLI + local file fallback - Search page",
+      "recallCount": 4,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.608277130126953,
+      "maxScore": 0.43056907951831813,
+      "firstRecalledAt": "2026-04-11T12:35:38.201Z",
+      "lastRecalledAt": "2026-04-11T19:36:27.349Z",
+      "queryHashes": [
+        "c30f8fac8827",
+        "d4ee0375988c",
+        "f0d939196864",
+        "b720b54c28de"
+      ],
+      "recallDays": [
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "gateway",
+        "qmd",
+        "memory.md",
+        "data/ai-memory-vault",
+        "90-day",
+        "openclaw/workspace/sync-vault.sh",
+        "api/search",
+        "3-tier"
+      ]
+    },
+    "memory:memory/2026-04-11.md:85:107": {
+      "key": "memory:memory/2026-04-11.md:85:107",
+      "path": "memory/2026-04-11.md",
+      "startLine": 85,
+      "endLine": 107,
+      "source": "memory",
+      "snippet": "- **rerender-lazy-state-init**: Lazy `useState` initializer + `sessionStorage` cache for counts (instant re-renders) - **DRY**: Shared `src/lib/vault.ts` — `execAsync`, `createCache`, `parseVaultFile`, constants - Added `compress: true` to `next.config.ts` - Dashboard cards now have gradient background colors per section (blue/amber/red/emerald/purple) - Build: 7 static + 7 dynamic routes, all verified working - **Lesson**: Stale `.next` cache causes 404s on new routes — must `rm -rf .next && next build` for clean deploy ## Dashboard Stability Fixes - Next.js keeps dying — raw `nohup` isn't reliable enough for production - Added `not-found.tsx` and `error.tsx` custom pages so errors are sty",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7500195443630218,
+      "maxScore": 0.39618836939334867,
+      "firstRecalledAt": "2026-04-11T12:35:38.201Z",
+      "lastRecalledAt": "2026-04-11T15:20:41.740Z",
+      "queryHashes": [
+        "c30f8fac8827",
+        "24d1323d696b"
+      ],
+      "recallDays": [
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "rerender-lazy-state-init",
+        "re-renders",
+        "src/lib/vault.ts",
+        "next.config.ts",
+        "blue/amber/red/emerald/purple",
+        "next.js",
+        "not-found.tsx",
+        "error.tsx"
+      ]
+    },
+    "memory:memory/2026-04-11.md:100:126": {
+      "key": "memory:memory/2026-04-11.md:100:126",
+      "path": "memory/2026-04-11.md",
+      "startLine": 100,
+      "endLine": 126,
+      "source": "memory",
+      "snippet": "- New `/api/archives` route — fetches archive files via SSH, parses timestamped entries, returns `{name, date, entries[]}` - Archives card on dashboard: orange gradient, shows \"10 entries\" count - Sidebar updated with Archive icon + link - `/api/counts` updated to include `archives` count - Build verified: 18 routes (8 static + 10 dynamic), all working ## User Reports \"page could not load\" - Next.js keeps dying intermittently — `nohup` not reliable - Works from sandbox browser every time — issue may be user's browser or intermittent downtime - Added custom `not-found.tsx` and `error.tsx` for styled error pages - Still need: proper process manager (pm2/systemd) for reliability ## Excalidraw",
+      "recallCount": 10,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 4.048138651251793,
+      "maxScore": 0.4419948875904083,
+      "firstRecalledAt": "2026-04-11T12:35:38.201Z",
+      "lastRecalledAt": "2026-04-12T18:44:43.499Z",
+      "queryHashes": [
+        "c30f8fac8827",
+        "2620aea2ee48",
+        "724d2de690ea",
+        "46522405f893",
+        "24d1323d696b",
+        "b720b54c28de",
+        "10c12fcd7e56",
+        "44d1b14e104e",
+        "0da5c866ca13",
+        "a4786281cac5"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "api/archives",
+        "api/counts",
+        "next.js",
+        "not-found.tsx",
+        "error.tsx",
+        "pm2/systemd",
+        "new",
+        "api"
+      ]
+    },
+    "memory:memory/2026-04-03.md:46:77": {
+      "key": "memory:memory/2026-04-03.md:46:77",
+      "path": "memory/2026-04-03.md",
+      "startLine": 46,
+      "endLine": 77,
+      "source": "memory",
+      "snippet": "src/stores/: gatewayStore.ts, agentStore.ts, uiStore.ts src/hooks/: useGateway.ts src/lib/: api.ts, utils.ts Shared: package.json, tsconfig.json, vite.config.ts, tailwind.config.ts, .env.example, .gitignore ``` **Build order:** 1. Config files first (package.json, tsconfig, vite, tailwind, .env.example) 2. Backend scaffold (server/) 3. Frontend scaffold (src/) 4. Test: `bun run dev` should start both FE (:3000) and BE (:3001) **Known constraints:** - OpenClaw Gateway token-only auth grants ZERO scopes — must handle gracefully - Backend should fall back to config file reads + CLI for agent data - PORT env var is set to 55924 — backend must use 3001 explicitly - SSH to Mac works: `ssh -i ~/.",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.5923637470167262,
+      "maxScore": 0.5923637470167262,
+      "firstRecalledAt": "2026-04-11T12:52:10.552Z",
+      "lastRecalledAt": "2026-04-11T12:52:10.552Z",
+      "queryHashes": [
+        "7d76907e807e"
+      ],
+      "recallDays": [
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "gateway",
+        "src/stores",
+        "gatewaystore.ts",
+        "agentstore.ts",
+        "uistore.ts",
+        "src/hooks",
+        "usegateway.ts",
+        "src/lib"
+      ]
+    },
+    "memory:memory/2026-04-11.md:123:140": {
+      "key": "memory:memory/2026-04-11.md:123:140",
+      "path": "memory/2026-04-11.md",
+      "startLine": 123,
+      "endLine": 140,
+      "source": "memory",
+      "snippet": "## Memory System Evaluation (Builtin vs QMD + Active Memory) - Compared existing builtin memory (SQLite + nomic-embed-text + FTS5) against new QMD sidecar backend - Key new features in QMD: named path collections, configurable search modes (query/search/vsearch), session retention, cross-chat scope rules, result tuning (maxResults, maxSnippetChars, timeoutMs) - **Active Memory plugin** (headline feature of 2026.4.10): automatic memory injection before every reply, not just manual search. Modes: message, recent, full - Recommendation: enable QMD as primary search backend with Active Memory in `message` mode, keep builtin as fallback - Tradeoff: QMD is a sidecar dependency (more ops), builtin",
+      "recallCount": 11,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 4.603740215301514,
+      "maxScore": 0.48501996695995325,
+      "firstRecalledAt": "2026-04-11T14:19:34.029Z",
+      "lastRecalledAt": "2026-04-12T15:50:09.573Z",
+      "queryHashes": [
+        "d4ee0375988c",
+        "c7ca9130b4da",
+        "2620aea2ee48",
+        "724d2de690ea",
+        "46522405f893",
+        "0bf4c51b40ea",
+        "f0d939196864",
+        "b720b54c28de",
+        "f0194e4803a8",
+        "3e1387d4eaab",
+        "135a03d29226"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "qmd",
+        "nomic-embed-text",
+        "query/search/vsearch",
+        "cross-chat",
+        "2026.4.10",
+        "system",
+        "evaluation",
+        "builtin"
+      ]
+    },
+    "memory:memory/2026-04-11.md:182:200": {
+      "key": "memory:memory/2026-04-11.md:182:200",
+      "path": "memory/2026-04-11.md",
+      "startLine": 182,
+      "endLine": 200,
+      "source": "memory",
+      "snippet": "- Manually completed: search page, write modal (using Base UI Dialog, not Radix — no `asChild` prop), sidebar update - Key fix: Next.js 16 uses Base UI, not Radix. DialogTrigger doesn't support `asChild` — removed it - Build succeeded: 20 routes (10 static ○, 10 dynamic ƒ) - Dashboard restarted and live at https://aimem.tariqvps.com ## Memory Architecture Final State - **ai-memory CLI** (Obsidian vault on Mac): primary write system, source of truth - **QMD** (sidecar): primary search backend, indexes local vault mirror + workspace memory - **Active Memory** (plugin): auto-injects context before replies, queryMode=recent - **aimem-dashboard**: visual interface with search (3-tier: SSH grep",
+      "recallCount": 7,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 2.8050552308559418,
+      "maxScore": 0.47597862184047696,
+      "firstRecalledAt": "2026-04-11T14:19:34.029Z",
+      "lastRecalledAt": "2026-04-11T15:15:06.840Z",
+      "queryHashes": [
+        "d4ee0375988c",
+        "c7ca9130b4da",
+        "2620aea2ee48",
+        "fad417b5bed2",
+        "724d2de690ea",
+        "46522405f893",
+        "f0d939196864"
+      ],
+      "recallDays": [
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "qmd",
+        "next.js",
+        "aimem.tariqvps.com",
+        "ai-memory",
+        "auto-injects",
+        "aimem-dashboard",
+        "3-tier",
+        "manually"
+      ]
+    },
+    "memory:memory/2026-04-11.md:139:166": {
+      "key": "memory:memory/2026-04-11.md:139:166",
+      "path": "memory/2026-04-11.md",
+      "startLine": 139,
+      "endLine": 166,
+      "source": "memory",
+      "snippet": "- **Phase 2**: Install QMD sidecar, point it at local vault mirror (`/data/ai-memory/`), rsync from Mac on startup, QMD re-indexes every 5min - **Phase 3**: Upgrade aimem-dashboard with `/api/search` (semantic search via QMD) and `/api/write` (write-back via ai-memory CLI) — full knowledge base, not just file viewer - Key principle: vault is source of truth on Mac, QMD indexes a copy, OpenClaw adds intelligence layer on top - Resilience: if Mac down → QMD works from local mirror; if QMD down → builtin fallback - Active Memory config: `queryMode: \"recent\"`, `maxSummaryChars: 220`, agents: [\"main\"] ## Mac SSH Status - Mac at 100.82.80.22 is unreachable (Connection timed out) — has been d",
+      "recallCount": 4,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.7636162370443345,
+      "maxScore": 0.4632685929536819,
+      "firstRecalledAt": "2026-04-11T14:19:34.029Z",
+      "lastRecalledAt": "2026-04-12T15:44:24.670Z",
+      "queryHashes": [
+        "d4ee0375988c",
+        "c7ca9130b4da",
+        "b720b54c28de",
+        "3e1387d4eaab"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "qmd",
+        "data/ai-memory",
+        "re-indexes",
+        "aimem-dashboard",
+        "api/search",
+        "api/write",
+        "write-back",
+        "ai-memory"
+      ]
+    },
+    "memory:memory/2026-04-11.md:71:89": {
+      "key": "memory:memory/2026-04-11.md:71:89",
+      "path": "memory/2026-04-11.md",
+      "startLine": 71,
+      "endLine": 89,
+      "source": "memory",
+      "snippet": "- Key insight: heartbeat intervals can change, so \"every Nth heartbeat\" is fragile. Context-based compacting is smarter — compact when there's actually work to archive. ## Dashboard Restart & Heartbeat - aimem.tariqvps.com was down — Next.js process died, stale `.next` build - Fixed: killed old process, `rm -rf .next`, fresh `next build`, restarted - Dashboard fully live again: 29 decisions, 9 patterns, 8 mistakes, 1 task, 3 projects - HEARTBEAT.md updated — compact trigger changed from \"every 4th heartbeat\" to \"when session has done significant work or after /compact\" ## Dashboard Performance Optimization & UI Polish - Installed `vercel-react-best-practices` skill and applied optimization",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.38391445279121394,
+      "maxScore": 0.38391445279121394,
+      "firstRecalledAt": "2026-04-11T14:51:57.263Z",
+      "lastRecalledAt": "2026-04-11T14:51:57.263Z",
+      "queryHashes": [
+        "fad417b5bed2"
+      ],
+      "recallDays": [
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "context-based",
+        "aimem.tariqvps.com",
+        "next.js",
+        "heartbeat.md",
+        "vercel-react-best-practices",
+        "key",
+        "insight",
+        "heartbeat"
+      ]
+    },
+    "memory:memory/2026-04-03.md:27:55": {
+      "key": "memory:memory/2026-04-03.md:27:55",
+      "path": "memory/2026-04-03.md",
+      "startLine": 27,
+      "endLine": 55,
+      "source": "memory",
+      "snippet": "**Status:** Starting Phase 1 implementation from scratch in `/data/zenith_repo/` **What exists:** - `/data/zenith_repo/` — Clean git repo, pushed to GitHub (commit e76f78f) - Contains: PLAN.md, CLAUDE.md, IMPLEMENTATION.md, README.md, PHASE1_IMPLEMENTATION_PLAN.md - No source code yet — subagent output from April 2 was lost **Phase 1 Plan (from PHASE1_IMPLEMENTATION_PLAN.md):** 1. Project scaffold (package.json, tsconfig, vite.config, tailwind.config, .env.example) 2. Backend: Express server + OpenClaw Gateway WebSocket (Protocol v3) + RPC wrapper + event relay + SQLite schema 3. Frontend: Vite + React 19 shell + Aurora background + glass panels + chrome bar + side rail + status bar 4. Zus",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.3613717347383499,
+      "maxScore": 0.3613717347383499,
+      "firstRecalledAt": "2026-04-11T15:17:06.908Z",
+      "lastRecalledAt": "2026-04-11T15:17:06.908Z",
+      "queryHashes": [
+        "b6525e69f5ce"
+      ],
+      "recallDays": [
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "gateway",
+        "data/zenith-repo",
+        "plan.md",
+        "claude.md",
+        "implementation.md",
+        "readme.md",
+        "phase1-implementation-plan.md",
+        "package.json"
+      ]
+    },
+    "memory:memory/2026-04-11.md:182:204": {
+      "key": "memory:memory/2026-04-11.md:182:204",
+      "path": "memory/2026-04-11.md",
+      "startLine": 182,
+      "endLine": 204,
+      "source": "memory",
+      "snippet": "- Manually completed: search page, write modal (using Base UI Dialog, not Radix — no `asChild` prop), sidebar update - Key fix: Next.js 16 uses Base UI, not Radix. DialogTrigger doesn't support `asChild` — removed it - Build succeeded: 20 routes (10 static ○, 10 dynamic ƒ) - Dashboard restarted and live at https://aimem.tariqvps.com ## Memory Architecture Final State - **ai-memory CLI** (Obsidian vault on Mac): primary write system, source of truth - **QMD** (sidecar): primary search backend, indexes local vault mirror + workspace memory - **Active Memory** (plugin): auto-injects context before replies, queryMode=recent - **aimem-dashboard**: visual interface with search (3-tier: SSH grep",
+      "recallCount": 4,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1.725224357843399,
+      "maxScore": 0.46495561003684993,
+      "firstRecalledAt": "2026-04-11T19:36:27.349Z",
+      "lastRecalledAt": "2026-04-12T15:50:09.573Z",
+      "queryHashes": [
+        "b720b54c28de",
+        "f0194e4803a8",
+        "3e1387d4eaab",
+        "135a03d29226"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "qmd",
+        "next.js",
+        "aimem.tariqvps.com",
+        "ai-memory",
+        "auto-injects",
+        "aimem-dashboard",
+        "3-tier",
+        "manually"
+      ]
+    },
+    "memory:memory/2026-04-11.md:216:236": {
+      "key": "memory:memory/2026-04-11.md:216:236",
+      "path": "memory/2026-04-11.md",
+      "startLine": 216,
+      "endLine": 236,
+      "source": "memory",
+      "snippet": "- Don't just assume based on restart command output ## Sidebar Hover + Active Gradient Styles - Updated sidebar nav items: active state uses `bg-gradient-to-r from-blue-500/90 to-purple-500/90 text-white shadow-md shadow-purple-500/20` - Hover state: `hover:bg-gradient-to-r hover:from-blue-500/10 hover:to-purple-500/10 hover:text-foreground` - Replaced flat black `bg-primary` active style with blue-purple gradient - Build succeeded (type warning at sidebar.tsx:83:15 — non-blocking, likely the conditional className) - Commit pending user approval before push ## Turbopack + fs Import Fix - Next.js 16 Turbopack chokes on direct `fs` imports in API routes at build time (code 1 exit) - Fix: add",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.972180832538946,
+      "maxScore": 0.6092008750775889,
+      "firstRecalledAt": "2026-04-12T11:48:55.121Z",
+      "lastRecalledAt": "2026-04-12T12:05:59.847Z",
+      "queryHashes": [
+        "a23471398b98",
+        "f0194e4803a8"
+      ],
+      "recallDays": [
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "bg-gradient-to-r",
+        "from-blue-500/90",
+        "to-purple-500/90",
+        "text-white",
+        "shadow-md",
+        "shadow-purple-500/20",
+        "from-blue-500/10",
+        "to-purple-500/10"
+      ]
+    },
+    "memory:memory/2026-04-11.md:203:220": {
+      "key": "memory:memory/2026-04-11.md:203:220",
+      "path": "memory/2026-04-11.md",
+      "startLine": 203,
+      "endLine": 220,
+      "source": "memory",
+      "snippet": "- Added `/config` page: displays OpenClaw config files (workspace .md + /data/.openclaw .json/.yaml/.env) as glassmorphism cards with gradient backgrounds, syntax highlighting (JSON, Markdown), copy button, expand/collapse - `/api/config` route: reads local config dirs, skips sensitive files, returns metadata (size, modified, type, gradient, icon) - Dashboard homepage: added Config card (slate gradient, Settings icon) - Sidebar: made collapsible (toggle button ↔), collapses to icon-only mode (64px) - Sidebar + main content: independent scrolling (`h-screen overflow-hidden` on body, `overflow-y-auto` on each pane) - WriteModal: pinned at bottom of sidebar, always visible. Accepts `collapsed`",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8059565931558608,
+      "maxScore": 0.44225023388862605,
+      "firstRecalledAt": "2026-04-12T12:05:59.847Z",
+      "lastRecalledAt": "2026-04-12T17:40:04.930Z",
+      "queryHashes": [
+        "f0194e4803a8",
+        "b60df744c03a"
+      ],
+      "recallDays": [
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "expand/collapse",
+        "api/config",
+        "icon-only",
+        "h-screen",
+        "overflow-hidden",
+        "overflow-y-auto",
+        "added",
+        "config"
+      ]
+    }
+  }
+}
